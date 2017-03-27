@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#009688</color>
+    <color name="colorPrimaryDark">#004D40</color>
+    <color name="colorPrimary2">#3f51b5</color>
+    <color name="colorPrimaryDark2">#303f9f</color>
+    <color name="colorAccent">#ff4081</color>
+
+    <array name="palette">
+        <item>#FFF</item>
+        <item>#000</item>
+        <item>#9E9E9E</item>
+        <item>#607D8B</item>
+        <item>#F44336</item>
+        <item>#E91E63</item>
+        <item>#9C27B0</item>
+        <item>#673AB7</item>
+        <item>#3F51B5</item>
+        <item>#2196F3</item>
+        <item>#00BCD4</item>
+        <item>#009688</item>
+        <item>#4CAF50</item>
+        <item>#8BC34A</item>
+        <item>#CDDC39</item>
+        <item>#FFEB3B</item>
+        <item>#FF9800</item>
+        <item>#795548</item>
+    </array>
+
+
+    <array name="palette2">
+        <item>#FFF</item>
+        <item>#000</item>
+        <item>@color/azure</item>
+        <item>@color/banana</item>
+        <item>@color/basil</item>
+        <item>@color/blue</item>
+        <item>@color/blue_light</item>
+        <item>@color/blueberry</item>
+        <item>@color/bright_pink</item>
+        <item>@color/cyan</item>
+        <item>@color/flamingo</item>
+        <item>@color/grape</item>
+        <item>@color/graphite</item>
+        <item>@color/green</item>
+        <item>@color/lavender</item>
+        <item>@color/magenta</item>
+        <item>@color/orange</item>
+        <item>@color/peacock</item>
+        <item>@color/red</item>
+        <item>@color/sage</item>
+        <item>@color/tangerine</item>
+        <item>@color/violet</item>
+        <item>@color/yellow</item>
+
+    </array>
+    <array name="palette1">
+        <item>#FFF</item>
+        <item>#000</item>
+        <item>@color/tomato</item>
+        <item>@color/tangerine</item>
+        <item>@color/banana</item>
+        <item>@color/basil</item>
+        <item>@color/sage</item>
+        <item>@color/peacock</item>
+        <item>@color/blueberry</item>
+        <item>@color/lavender</item>
+        <item>@color/grape</item>
+        <item>@color/flamingo</item>
+        <item>@color/graphite</item>
+    </array>
+</resources>
