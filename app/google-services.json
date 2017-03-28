@@ -111,6 +111,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "923149912434-vk8t8l2i4cp5c0hftfa8cp9e3mf3ec36.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "xyz.yapapa.recipe",
+            "certificate_hash": "4bf335741ab28cecfbc6b334cddffeb0c2fbfeb7"
+          }
+        },
+        {
           "client_id": "923149912434-e527u9u122m5ac93hiru70icqbct342l.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -125,8 +133,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "923149912434-e527u9u122m5ac93hiru70icqbct342l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2

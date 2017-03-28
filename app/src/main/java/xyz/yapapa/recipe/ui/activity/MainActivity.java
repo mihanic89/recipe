@@ -8,7 +8,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
@@ -33,11 +32,9 @@ import static xyz.yapapa.recipe.R.id.adView;
 
 public class MainActivity extends AppCompatActivity
 {
-	@Bind(R.id.main_drawing_view)
-	DrawingView mDrawingView;
+	@Bind(R.id.main_drawing_view) DrawingView mDrawingView;
 	//@Bind(R.id.main_fill_iv)    ImageView mFillBackgroundImageView;
-	@Bind(R.id.main_color_iv)
-	ImageView mColorImageView;
+	@Bind(R.id.main_color_iv)   SquareImageView mColorImageView;
 	@Bind(R.id.main_stroke_iv) 	SquareImageView mStrokeImageView;
 	@Bind(R.id.main_undo_iv)    SquareImageView mUndoImageView;
 	@Bind(R.id.main_redo_iv)    SquareImageView mRedoImageView;
