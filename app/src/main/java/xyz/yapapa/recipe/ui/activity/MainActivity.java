@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity
 		mCurrentColor = ContextCompat.getColor(this, R.color.red);
 		mCurrentStroke = 15;
 		mDrawingView.setDrawingCacheEnabled(true);
-		mDrawingView.setBackgroundResource(R.drawable.p01);//set the back ground if you wish to
+		mDrawingView.setBackgroundResource(R.drawable.c001);//set the back ground if you wish to
 		mDrawingView.setPaintColor(mCurrentColor);
 		mDrawingView.setPaintStrokeWidth(mCurrentStroke);
 
@@ -279,26 +279,40 @@ public class MainActivity extends AppCompatActivity
 
     private void loadDrawables() {
         intDrawables = new int[]{
-				R.drawable.p01,
-
-                R.drawable.p02,
-
-                R.drawable.p03,
-
-                R.drawable.p04,
-
-                R.drawable.p05,
-
-                R.drawable.p06,
-
-                R.drawable.p07,
-
-                R.drawable.p08,
-
-                R.drawable.p09,
-
-				R.drawable.p10,
-
+				R.drawable.c001,
+                R.drawable.c002,
+                R.drawable.c003,
+                R.drawable.c004,
+                R.drawable.c005,
+                R.drawable.c006,
+                R.drawable.c007,
+                R.drawable.c008,
+                R.drawable.c009,
+				R.drawable.d01,
+				R.drawable.d02,
+				R.drawable.d03,
+		    	R.drawable.d04,
+				R.drawable.d05,
+				R.drawable.d06,
+				R.drawable.d07,
+				R.drawable.d08,
+				R.drawable.d09,
+				R.drawable.d10,
+				R.drawable.d11,
+				R.drawable.d12,
+				R.drawable.d13,
+				R.drawable.d14,
+				R.drawable.d15,
+				R.drawable.d16,
+				R.drawable.d17,
+				R.drawable.d18,
+				R.drawable.d19,
+				R.drawable.d20,
+				R.drawable.d31,
+				R.drawable.d32,
+				R.drawable.d33,
+				R.drawable.d34,
+				R.drawable.d35,
 
         };
     }

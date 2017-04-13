@@ -13,6 +13,7 @@
     <xyz.yapapa.recipe.ui.component.DrawingView
         android:id="@+id/main_drawing_view"
         android:layout_width="match_parent"
+
         android:layout_height="0dp"
         android:layout_weight="0.85"/>
 
@@ -29,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:scaleType="fitXY"
-            ads:srcCompat="@android:drawable/ic_media_previous"
+            ads:srcCompat="@drawable/ic_navigate_before_white_48dp"
             android:padding="@dimen/button_padding"
             android:clickable="true"
             android:background="?attr/selectableItemBackgroundBorderless"/>
@@ -39,8 +40,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            ads:srcCompat="@android:drawable/ic_menu_share"
+            ads:srcCompat="@drawable/ic_share_white_48dp"
             android:scaleType="fitXY"
+            android:padding="@dimen/button_padding"
+            android:clickable="true"
+            android:background="?attr/selectableItemBackgroundBorderless"/>
+
+        <xyz.yapapa.recipe.ui.component.SquareImageView
+            android:id="@+id/delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:scaleType="fitXY"
+            ads:srcCompat="@drawable/ic_delete_white_48dp"
             android:padding="@dimen/button_padding"
             android:clickable="true"
             android:background="?attr/selectableItemBackgroundBorderless"/>
@@ -52,7 +64,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:scaleType="fitXY"
-            android:src="@drawable/ic_palette_white_24dp"
+            ads:srcCompat="@drawable/ic_color_lens_white_48dp"
             android:padding="@dimen/button_padding"
             android:clickable="true"
             android:background="?attr/selectableItemBackgroundBorderless"/>
@@ -63,7 +75,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:scaleType="fitXY"
-            android:src="@drawable/ic_gesture_white_24dp"
+            android:src="@drawable/ic_gesture_white_48dp"
             android:padding="@dimen/button_padding"
             android:clickable="true"
             android:background="?attr/selectableItemBackgroundBorderless"/>
@@ -74,21 +86,12 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:scaleType="fitXY"
-            android:src="@drawable/ic_undo_white_24dp"
+            ads:srcCompat="@drawable/ic_undo_white_48dp"
             android:padding="@dimen/button_padding"
             android:clickable="true"
             android:background="?attr/selectableItemBackgroundBorderless"/>
 
-        <xyz.yapapa.recipe.ui.component.SquareImageView
-            android:id="@+id/delete"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:scaleType="fitXY"
-            ads:srcCompat="@android:drawable/ic_menu_delete"
-            android:padding="@dimen/button_padding"
-            android:clickable="true"
-            android:background="?attr/selectableItemBackgroundBorderless"/>
+
 
         <xyz.yapapa.recipe.ui.component.SquareImageView
             android:id="@+id/main_redo_iv"
@@ -96,7 +99,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:scaleType="fitXY"
-            android:src="@drawable/ic_redo_white_24dp"
+            ads:srcCompat="@drawable/ic_redo_white_48dp"
             android:padding="@dimen/button_padding"
             android:clickable="true"
             android:background="?attr/selectableItemBackgroundBorderless"/>
@@ -109,12 +112,12 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:scaleType="fitXY"
-            ads:srcCompat="@android:drawable/ic_media_next"
+            ads:srcCompat="@drawable/ic_navigate_next_white_48dp"
             android:padding="@dimen/button_padding"
             android:clickable="true"
             android:background="?attr/selectableItemBackgroundBorderless"/>
     </LinearLayout>
-
+    
     <com.google.android.gms.ads.AdView
         android:id="@+id/adView"
         android:layout_width="match_parent"
