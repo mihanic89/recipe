@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
 import org.xdty.preference.colorpicker.ColorPickerDialog;
@@ -58,9 +59,10 @@ public class MainActivity extends AppCompatActivity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+		MobileAds.initialize(getApplicationContext(), "ca-app-pub-2888343178529026~2653479392");
         mAdView = (AdView) findViewById(adView);
         AdRequest adRequest = new AdRequest.Builder()
-
+				.addTestDevice("09D7B5315C60A80D280B8CDF618FD3DE")
                 .build();
         mAdView.loadAd(adRequest);
         loadDrawables();
