@@ -31,6 +31,7 @@ import xyz.yapapa.recipe.ui.dialog.StrokeSelectorDialog;
 import static xyz.yapapa.recipe.R.id.adView;
 
 
+
 public class MainActivity extends AppCompatActivity
 {
 	@Bind(R.id.main_drawing_view) DrawingView mDrawingView;
@@ -62,7 +63,7 @@ public class MainActivity extends AppCompatActivity
 		MobileAds.initialize(getApplicationContext(), "ca-app-pub-2888343178529026~2653479392");
         mAdView = (AdView) findViewById(adView);
         AdRequest adRequest = new AdRequest.Builder()
-				.addTestDevice("09D7B5315C60A80D280B8CDF618FD3DE")
+				//.addTestDevice("09D7B5315C60A80D280B8CDF618FD3DE")
                 .build();
         mAdView.loadAd(adRequest);
         loadDrawables();
@@ -137,7 +138,7 @@ public class MainActivity extends AppCompatActivity
 		ColorPickerDialog dialog = ColorPickerDialog.newInstance(R.string.color_picker_default_title,
 				colors,
 				mCurrentColor,
-				5,
+				4,
 				ColorPickerDialog.SIZE_SMALL);
 
 		dialog.setOnColorSelectedListener(new ColorPickerSwatch.OnColorSelectedListener()
@@ -310,6 +311,16 @@ public class MainActivity extends AppCompatActivity
 				R.drawable.d18,
 				R.drawable.d19,
 				R.drawable.d20,
+				R.drawable.d21,
+				R.drawable.d22,
+				R.drawable.d23,
+				R.drawable.d24,
+				R.drawable.d25,
+				R.drawable.d26,
+				R.drawable.d27,
+				R.drawable.d28,
+				R.drawable.d29,
+				R.drawable.d30,
 				R.drawable.d31,
 				R.drawable.d32,
 				R.drawable.d33,

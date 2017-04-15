@@ -67,6 +67,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "923149912434-ngqhrpc16uhcrrkiqpcrj6nbmrp4m5h9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "xyz.yapapa.draw",
+            "certificate_hash": "1a87f1fcaed60d24955205d954f03c56c7e3924b"
+          }
+        },
+        {
           "client_id": "923149912434-qllsndcnar9r0liijgc7001hocotc2p0.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
@@ -110,6 +118,22 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "923149912434-shjjks2a3qj6qi9g0n2ad7jduvb5vgj5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "xyz.yapapa.recipe",
+            "certificate_hash": "7e004fe0a5425771beff10dd281a5dbfc8fe80fa"
+          }
+        },
+        {
+          "client_id": "923149912434-4hcr5he1f616lo4tm4rhh88emanvs857.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "xyz.yapapa.recipe",
+            "certificate_hash": "1a87f1fcaed60d24955205d954f03c56c7e3924b"
+          }
+        },
         {
           "client_id": "923149912434-vk8t8l2i4cp5c0hftfa8cp9e3mf3ec36.apps.googleusercontent.com",
           "client_type": 1,
