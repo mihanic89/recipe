@@ -117,7 +117,7 @@
             android:clickable="true"
             android:background="?attr/selectableItemBackgroundBorderless"/>
     </LinearLayout>
-    
+
     <com.google.android.gms.ads.AdView
         android:id="@+id/adView"
         android:layout_width="match_parent"

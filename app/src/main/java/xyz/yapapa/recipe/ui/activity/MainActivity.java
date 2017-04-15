@@ -61,9 +61,11 @@ public class MainActivity extends AppCompatActivity
 		setContentView(R.layout.activity_main);
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 		MobileAds.initialize(getApplicationContext(), "ca-app-pub-2888343178529026~2653479392");
-        mAdView = (AdView) findViewById(adView);
+
+
+		mAdView = (AdView) findViewById(adView);
         AdRequest adRequest = new AdRequest.Builder()
-				//.addTestDevice("09D7B5315C60A80D280B8CDF618FD3DE")
+				.addTestDevice("09D7B5315C60A80D280B8CDF618FD3DE")
                 .build();
         mAdView.loadAd(adRequest);
         loadDrawables();
@@ -330,27 +332,30 @@ public class MainActivity extends AppCompatActivity
         };
     }
 
-	@Override
-	public void onResume() {
-		super.onResume();
-
-		// Resume the AdView.
-		mAdView.resume();
-	}
-
+	/** Called when leaving the activity */
 	@Override
 	public void onPause() {
-		// Pause the AdView.
-		mAdView.pause();
-
+		if (mAdView != null) {
+			mAdView.pause();
+		}
 		super.onPause();
 	}
 
+	/** Called when returning to the activity */
+	@Override
+	public void onResume() {
+		super.onResume();
+		if (mAdView != null) {
+			mAdView.resume();
+		}
+	}
+
+	/** Called before the activity is destroyed */
 	@Override
 	public void onDestroy() {
-		// Destroy the AdView.
-		mAdView.destroy();
-
+		if (mAdView != null) {
+			mAdView.destroy();
+		}
 		super.onDestroy();
 	}
 }
