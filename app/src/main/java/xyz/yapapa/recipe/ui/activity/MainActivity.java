@@ -30,8 +30,6 @@ import xyz.yapapa.recipe.ui.component.DrawingView;
 import xyz.yapapa.recipe.ui.component.SquareImageView;
 import xyz.yapapa.recipe.ui.dialog.StrokeSelectorDialog;
 
-import static xyz.yapapa.recipe.R.id.adView;
-
 
 
 public class MainActivity extends AppCompatActivity
@@ -61,15 +59,17 @@ public class MainActivity extends AppCompatActivity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+
+
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
-		//MobileAds.initialize(getApplicationContext(), "ca-app-pub-2888343178529026~2653479392");
+		MobileAds.initialize(getApplicationContext(), "ca-app-pub-2888343178529026~2653479392");
 
 
-		mAdView = (AdView) findViewById(adView);
-        AdRequest adRequest = new AdRequest.Builder()
-			//	.addTestDevice("09D7B5315C60A80D280B8CDF618FD3DE")
-                .build();
-        mAdView.loadAd(adRequest);
+		mAdView = (AdView) findViewById(R.id.adView);
+		AdRequest adRequest = new AdRequest.Builder()
+				.addTestDevice("09D7B5315C60A80D280B8CDF618FD3DE")
+				.build();
+		mAdView.loadAd(adRequest);
 
 		mAdView.setAdListener(new AdListener() {
 			@Override
