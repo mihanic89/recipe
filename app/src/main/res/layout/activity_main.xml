@@ -14,7 +14,7 @@
     <xyz.yapapa.recipe.ui.component.DrawingView
         android:id="@+id/main_drawing_view"
         android:layout_width="match_parent"
-
+        android:scaleType="centerInside"
         android:layout_height="0dp"
         android:layout_weight="0.85"/>
 

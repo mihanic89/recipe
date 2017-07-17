@@ -138,6 +138,7 @@ public class MainActivity extends AppCompatActivity
 		mCurrentStroke = 15;
 		mDrawingView.setDrawingCacheEnabled(true);
 		mDrawingView.setBackgroundResource(R.drawable.c001);//set the back ground if you wish to
+
 		mDrawingView.setPaintColor(mCurrentColor);
 		mDrawingView.setPaintStrokeWidth(mCurrentStroke);
 
@@ -328,6 +329,7 @@ public class MainActivity extends AppCompatActivity
                 R.drawable.c007,
                 R.drawable.c008,
                 R.drawable.c009,
+				R.drawable.b01,
 				R.drawable.d01,
 				R.drawable.d02,
 				R.drawable.d03,
