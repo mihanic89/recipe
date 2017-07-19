@@ -3,15 +3,19 @@ package xyz.yapapa.recipe.ui.component;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
 import java.util.ArrayList;
+
+import static android.content.ContentValues.TAG;
+//import static com.google.android.gms.internal.zzt.TAG;
 
 public class DrawingView extends View
 {
@@ -20,6 +24,7 @@ public class DrawingView extends View
 	private Paint mDrawPaint;
 	private Canvas mDrawCanvas;
 	private Bitmap mCanvasBitmap;
+	private Bitmap mCanvasBitmapBackground=null;
 
 	private ArrayList<Path> mPaths = new ArrayList<>();
 	private ArrayList<Paint> mPaints = new ArrayList<>();
@@ -44,7 +49,9 @@ public class DrawingView extends View
 		initPaint();
 	}
 
-
+    private Canvas getmyCanvas(){
+		return this.mDrawCanvas;
+	}
 
 	private void initPaint()
 	{
@@ -64,9 +71,53 @@ public class DrawingView extends View
 		mBackgroundPaint.setColor(mBackgroundColor);
 		mBackgroundPaint.setStyle(Paint.Style.FILL);
 		canvas.drawRect(0, 0, this.getWidth(), this.getHeight(), mBackgroundPaint);
+		if (mCanvasBitmapBackground!=null)
+		{
+			int width1 = mCanvasBitmapBackground.getWidth();
+			int height1 = mCanvasBitmapBackground.getHeight();
+
+			int x0=(mDrawCanvas.getWidth()/2- width1/2)-1;
+			int y0=(mDrawCanvas.getHeight()/2 -height1/2)-1;
+
+			Log.d(TAG, "x0 before: " + x0);
+			Log.d(TAG, "y0 before: " + y0);
+
+			if (x0<0) x0=0;
+			if (y0<0) y0=0;
+
+			Log.d(TAG, "x0 after: " + x0);
+			Log.d(TAG, "y0 after: " + y0);
+
+
+			//mCanvasBitmapBackground= Bitmap.createBitmap(b1, x0, y0,
+			//		mDrawCanvas.getWidth(), mDrawCanvas.getHeight());
+			canvas.drawBitmap(mCanvasBitmapBackground,x0, y0, null);
+		}
 	}
 
+	private void drawBackgroundBitmap(Canvas canvas)
+	{
 
+		int width1 = mCanvasBitmapBackground.getWidth();
+		int height1 = mCanvasBitmapBackground.getHeight();
+
+		int x0=(mDrawCanvas.getWidth()/2- width1/2)-1;
+		int y0=(mDrawCanvas.getHeight()/2 -height1/2)-1;
+
+		Log.d(TAG, "x0 before: " + x0);
+		Log.d(TAG, "y0 before: " + y0);
+
+		if (x0<0) x0=0;
+		if (y0<0) y0=0;
+
+		Log.d(TAG, "x0 after: " + x0);
+		Log.d(TAG, "y0 after: " + y0);
+
+
+		//mCanvasBitmapBackground= Bitmap.createBitmap(b1, x0, y0,
+		//		mDrawCanvas.getWidth(), mDrawCanvas.getHeight());
+		canvas.drawBitmap(mCanvasBitmapBackground,x0, y0, null);
+	}
 	private void drawPaths(Canvas canvas)
 	{
 		int i = 0;
@@ -80,11 +131,16 @@ public class DrawingView extends View
 	@Override
 	protected void onDraw(Canvas canvas)
 	{
-		//drawBackground(canvas);
+
+		drawBackground(canvas);
+		if (mCanvasBitmapBackground!=null)
+			drawBackgroundBitmap(canvas);
 		drawPaths(canvas);
 
 		canvas.drawPath(mDrawPath, mDrawPaint);
 	}
+
+
 
 	@Override
 	protected void onSizeChanged(int w, int h, int oldw, int oldh)
@@ -94,6 +150,13 @@ public class DrawingView extends View
 		mCanvasBitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
 
 		mDrawCanvas = new Canvas(mCanvasBitmap);
+	}
+
+	public void createCanvas(int w, int h, Bitmap bitmap) {
+		mCanvasBitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
+
+		mDrawCanvas = new Canvas(mCanvasBitmap);
+		SetCustomBitmap1(bitmap);
 	}
 
 	@Override
@@ -133,6 +196,21 @@ public class DrawingView extends View
 		mUndonePaths.clear();
 		mUndonePaints.clear();
 		mDrawCanvas.drawColor(0, PorterDuff.Mode.CLEAR);
+		if (mCanvasBitmapBackground!=null){
+			mCanvasBitmapBackground.recycle();
+			mCanvasBitmapBackground=null;}
+		invalidate();
+	}
+
+	public void clearCanvaswithoutBackground()
+	{
+		mPaths.clear();
+		mPaints.clear();
+		mUndonePaths.clear();
+		mUndonePaints.clear();
+		mDrawCanvas.drawColor(0, PorterDuff.Mode.CLEAR);
+		if (mCanvasBitmapBackground!=null){
+			drawBackground(mDrawCanvas);}
 		invalidate();
 	}
 
@@ -141,6 +219,8 @@ public class DrawingView extends View
 		mPaintColor = color;
 		mDrawPaint.setColor(mPaintColor);
 	}
+
+
 
 	public void setPaintStrokeWidth(int strokeWidth)
 	{
@@ -155,11 +235,30 @@ public class DrawingView extends View
 		invalidate();
 	}
 
-	public Bitmap getBitmap(Drawable d)
+	public void DrawCustom(Bitmap b)
 	{
-		//drawBackground(mDrawCanvas);
-		d.setBounds(0,0 , mDrawCanvas.getWidth(), mDrawCanvas.getHeight());
-		d.draw(mDrawCanvas);
+
+		//Bitmap b1 = Bitmap.createScaledBitmap(b,mDrawCanvas.getWidth(),mDrawCanvas.getHeight(),false);
+		//b = Bitmap.createBitmap(mDrawCanvas.getWidth(),mDrawCanvas.getHeight(), Bitmap.Config.ARGB_8888);
+		//mDrawCanvas = new Canvas(b);
+		//mDrawCanvas.drawBitmap(b,mDrawCanvas.getWidth(),mDrawCanvas.getHeight(),null);
+
+		//mDrawCanvas.drawBitmap(b,0, 0,mDrawPaint);
+		//b.recycle();
+		//mDrawCanvas.drawCircle(300,300,200,mDrawPaint);
+		mDrawCanvas.drawBitmap(b,0, 0,null);
+		invalidate();
+		//mDrawCanvas.drawBitmap(b,mDrawCanvas.getWidth(), mDrawCanvas.getHeight(),null);
+
+	}
+
+
+
+	public Bitmap getBitmap()
+	{
+		drawBackground(mDrawCanvas);
+		if (mCanvasBitmapBackground!=null)
+			drawBackgroundBitmap(mDrawCanvas);
 		drawPaths(mDrawCanvas);
 		return mCanvasBitmap;
 	}
@@ -182,5 +281,130 @@ public class DrawingView extends View
 			mPaints.add(mUndonePaints.remove(mUndonePaints.size() - 1));
 			invalidate();
 		}
+	}
+
+	public void SetCustomBitmap(Bitmap b) {
+		int width = b.getWidth();
+		int height = b.getHeight();
+		float scaleWidth = ((float) mDrawCanvas.getWidth()) / width;
+		float scaleHeight = ((float) mDrawCanvas.getHeight()) / height;
+
+		Matrix matrix = new Matrix();
+		matrix.postScale(scaleWidth, scaleHeight);
+
+		mCanvasBitmapBackground= Bitmap.createBitmap(b, 0, 0,
+				width, height, matrix, true);
+
+		invalidate();
+	}
+
+
+
+	public void SetCustomBitmap1(Bitmap b) {
+
+
+		int width = b.getWidth();
+		int height = b.getHeight();
+
+		Canvas myCanvas=getmyCanvas();
+
+		float scaleWidth = ((float) myCanvas.getWidth()) / width;
+		float scaleHeight = ((float) myCanvas.getHeight()) / height;
+
+		if (scaleWidth>scaleHeight)
+		{scaleWidth=scaleHeight;}
+		//else {scaleHeight=scaleWidth;}
+
+		Matrix matrix = new Matrix();
+		matrix.postScale(scaleWidth, scaleHeight);
+
+		this.mCanvasBitmapBackground= Bitmap.createBitmap(b, 0, 0,
+				width, height, matrix, true);
+		b.recycle();
+
+
+		/*int width1 = b1.getWidth();
+		int height1 = b1.getHeight();
+
+		int x0=(mDrawCanvas.getWidth()/2-width1/2);
+		int y0=(mDrawCanvas.getHeight()/2-height1/2);
+
+		if (x0-mDrawCanvas.getWidth()<0) x0=0;
+		if (y0-mDrawCanvas.getHeight()<0) y0=0;
+
+
+		Log.d(TAG, "SetCustomx0: " + x0);
+		Log.d(TAG, "SetCustomy0: "+ y0);
+		Log.d(TAG, "SetCustomBwidth: " + b1.getWidth());
+		Log.d(TAG, "SetCustomBheight: "+ b1.getHeight());
+		Log.d(TAG, "SetCustomBcanwidth: " + mDrawCanvas.getWidth());
+		Log.d(TAG, "SetCustomBcanheight: "+ mDrawCanvas.getHeight());
+
+
+		mCanvasBitmapBackground= Bitmap.createBitmap(b1, x0, y0,
+				mDrawCanvas.getWidth(), mDrawCanvas.getHeight());
+		b1.recycle();
+		Log.d(TAG, "SetCustomBwidth: " + b1.getWidth());
+		Log.d(TAG, "SetCustomBheight: "+ b1.getHeight());
+		Log.d(TAG, "SetCustomBcanwidth: " + mDrawCanvas.getWidth());
+		Log.d(TAG, "SetCustomBcanheight: "+ mDrawCanvas.getHeight());
+
+		*/
+
+		invalidate();
+	}
+
+	public void SetCustomBitmap1(Bitmap b,int w, int h) {
+
+
+		int width = b.getWidth();
+		int height = b.getHeight();
+
+		Canvas myCanvas=getmyCanvas();
+
+		float scaleWidth = ((float) myCanvas.getWidth()) / width;
+		float scaleHeight = ((float) myCanvas.getHeight()) / height;
+
+		if (scaleWidth>scaleHeight)
+		{scaleWidth=scaleHeight;}
+		//else {scaleHeight=scaleWidth;}
+
+		Matrix matrix = new Matrix();
+		matrix.postScale(scaleWidth, scaleHeight);
+
+		this.mCanvasBitmapBackground= Bitmap.createBitmap(b, 0, 0,
+				width, height, matrix, true);
+		b.recycle();
+
+
+		/*int width1 = b1.getWidth();
+		int height1 = b1.getHeight();
+
+		int x0=(mDrawCanvas.getWidth()/2-width1/2);
+		int y0=(mDrawCanvas.getHeight()/2-height1/2);
+
+		if (x0-mDrawCanvas.getWidth()<0) x0=0;
+		if (y0-mDrawCanvas.getHeight()<0) y0=0;
+
+
+		Log.d(TAG, "SetCustomx0: " + x0);
+		Log.d(TAG, "SetCustomy0: "+ y0);
+		Log.d(TAG, "SetCustomBwidth: " + b1.getWidth());
+		Log.d(TAG, "SetCustomBheight: "+ b1.getHeight());
+		Log.d(TAG, "SetCustomBcanwidth: " + mDrawCanvas.getWidth());
+		Log.d(TAG, "SetCustomBcanheight: "+ mDrawCanvas.getHeight());
+
+
+		mCanvasBitmapBackground= Bitmap.createBitmap(b1, x0, y0,
+				mDrawCanvas.getWidth(), mDrawCanvas.getHeight());
+		b1.recycle();
+		Log.d(TAG, "SetCustomBwidth: " + b1.getWidth());
+		Log.d(TAG, "SetCustomBheight: "+ b1.getHeight());
+		Log.d(TAG, "SetCustomBcanwidth: " + mDrawCanvas.getWidth());
+		Log.d(TAG, "SetCustomBcanheight: "+ mDrawCanvas.getHeight());
+
+		*/
+
+		invalidate();
 	}
 }

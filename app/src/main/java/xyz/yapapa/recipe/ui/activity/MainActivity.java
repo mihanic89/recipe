@@ -2,6 +2,8 @@ package xyz.yapapa.recipe.ui.activity;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
@@ -105,8 +107,17 @@ public class MainActivity extends AppCompatActivity
 		ButterKnife.bind(this);
 
 		initDrawingView();
+		//mDrawingView.clearCanvas();
+
+		initBackground();
+
 	}
 
+	private void initBackground() {
+		//mDrawingView.setBackgroundResource(intDrawables[0]);
+		//mDrawingView.clearCanvas();
+		//mDrawingView.SetCustomBitmap1(BitmapFactory.decodeResource(getResources(),intDrawables[0]));
+	}
 
 
 	@Override
@@ -137,12 +148,16 @@ public class MainActivity extends AppCompatActivity
 		mCurrentColor = ContextCompat.getColor(this, R.color.red);
 		mCurrentStroke = 15;
 		mDrawingView.setDrawingCacheEnabled(true);
-		mDrawingView.setBackgroundResource(R.drawable.c001);//set the back ground if you wish to
-
+		//mDrawingView.setBackgroundResource(R.drawable.c001);
 		mDrawingView.setPaintColor(mCurrentColor);
 		mDrawingView.setPaintStrokeWidth(mCurrentStroke);
-
+		Log.d("my", "SetCustomx0: " + mDrawingView.getWidth());
+		Log.d("my", "SetCustomy0: "+ mDrawingView.getHeight());
+		//mDrawingView.SetCustomBitmap1(BitmapFactory.decodeResource(getApplicationContext().getResources(),intDrawables[0]),mDrawingView.getWidth(),mDrawingView.getHeight());
+		//mDrawingView.SetCustomBitmap1(BitmapFactory.decodeResource(getApplicationContext().getResources(),intDrawables[0]));
 	}
+
+
 
 	private void startFillBackgroundDialog()
 	{
@@ -227,7 +242,7 @@ public class MainActivity extends AppCompatActivity
 	{
 		if (PermissionManager.checkWriteStoragePermissions(this))
 		{
-			Uri uri = FileManager.saveBitmap(mDrawingView.getBitmap(getResources().getDrawable(intDrawables[i])));
+			Uri uri = FileManager.saveBitmap(mDrawingView.getBitmap());
 			startShareDialog(uri);
 		}
 	}
@@ -242,7 +257,7 @@ public class MainActivity extends AppCompatActivity
 			{
 				if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
 				{
-					Uri uri = FileManager.saveBitmap(mDrawingView.getBitmap(getResources().getDrawable(intDrawables[i])));
+					Uri uri = FileManager.saveBitmap(mDrawingView.getBitmap());
 					startShareDialog(uri);
 				} else
 				{
@@ -287,7 +302,7 @@ public class MainActivity extends AppCompatActivity
     @OnClick(R.id.delete)
     public void onDeleteOptionClick()
     {
-        mDrawingView.clearCanvas();
+        mDrawingView.clearCanvaswithoutBackground();
     }
 
     @OnClick(R.id.main_redo_iv)
@@ -303,8 +318,8 @@ public class MainActivity extends AppCompatActivity
         i--;
         if (i<0 )
         {i=intDrawables.length-1;
-            mDrawingView.setBackgroundResource(intDrawables[i]);}
-        else {mDrawingView.setBackgroundResource(intDrawables[i]);}
+            mDrawingView.SetCustomBitmap1(BitmapFactory.decodeResource(getResources(),intDrawables[i]));}
+        else {mDrawingView.SetCustomBitmap1(BitmapFactory.decodeResource(getResources(),intDrawables[i]));}
     }
 
     @OnClick(R.id.next_pic)
@@ -312,9 +327,9 @@ public class MainActivity extends AppCompatActivity
         mDrawingView.clearCanvas();
         i++;
         if (i<intDrawables.length )
-        {mDrawingView.setBackgroundResource(intDrawables[i]);}
+        {mDrawingView.SetCustomBitmap1(BitmapFactory.decodeResource(getResources(),intDrawables[i]));}
         else {i=0;
-            mDrawingView.setBackgroundResource(intDrawables[i]);}
+            mDrawingView.SetCustomBitmap1(BitmapFactory.decodeResource(getResources(),intDrawables[i]));}
     }
 
 
@@ -365,7 +380,6 @@ public class MainActivity extends AppCompatActivity
 				R.drawable.d33,
 				R.drawable.d34,
 				R.drawable.d35,
-
         };
     }
 
