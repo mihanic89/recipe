@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Matrix;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
@@ -105,18 +107,14 @@ public class MainActivity extends AppCompatActivity
 
         loadDrawables();
 		ButterKnife.bind(this);
-
+		//initBackground();
 		initDrawingView();
-		//mDrawingView.clearCanvas();
 
-		initBackground();
+		mDrawingView.setCustomBitmap1(BitmapFactory.decodeResource(getResources(),intDrawables[0]));
+		Log.d("my", "SetCustomx0: " + BitmapFactory.decodeResource(getResources(),intDrawables[0]).getWidth());
+		Log.d("my", "SetCustomy0: "+ BitmapFactory.decodeResource(getResources(),intDrawables[0]).getHeight());
 
-	}
 
-	private void initBackground() {
-		//mDrawingView.setBackgroundResource(intDrawables[0]);
-		//mDrawingView.clearCanvas();
-		//mDrawingView.SetCustomBitmap1(BitmapFactory.decodeResource(getResources(),intDrawables[0]));
 	}
 
 
@@ -148,16 +146,36 @@ public class MainActivity extends AppCompatActivity
 		mCurrentColor = ContextCompat.getColor(this, R.color.red);
 		mCurrentStroke = 15;
 		mDrawingView.setDrawingCacheEnabled(true);
+        //mDrawingView.setDrawId(intDrawables[0]);
+
 		//mDrawingView.setBackgroundResource(R.drawable.c001);
+
+		//mDrawingView.SetCustomBitmap1(BitmapFactory.decodeResource(getResources(),intDrawables[0]));
 		mDrawingView.setPaintColor(mCurrentColor);
 		mDrawingView.setPaintStrokeWidth(mCurrentStroke);
-		Log.d("my", "SetCustomx0: " + mDrawingView.getWidth());
-		Log.d("my", "SetCustomy0: "+ mDrawingView.getHeight());
+
 		//mDrawingView.SetCustomBitmap1(BitmapFactory.decodeResource(getApplicationContext().getResources(),intDrawables[0]),mDrawingView.getWidth(),mDrawingView.getHeight());
 		//mDrawingView.SetCustomBitmap1(BitmapFactory.decodeResource(getApplicationContext().getResources(),intDrawables[0]));
 	}
 
+	private Bitmap convertBitmap (int resId, Canvas canvas){
+		Bitmap b= BitmapFactory.decodeResource(getResources(),resId);
+		int width = b.getWidth();
+		int height = b.getHeight();
+		float scaleWidth = ((float) canvas.getWidth()) / width;
+		float scaleHeight = ((float) canvas.getHeight()) / height;
 
+		if (scaleWidth>scaleHeight)
+		{scaleWidth=scaleHeight;}
+		//else {scaleHeight=scaleWidth;}
+
+		Matrix matrix = new Matrix();
+		matrix.postScale(scaleWidth, scaleHeight);
+
+		return Bitmap.createBitmap(b, 0, 0,
+				width, height, matrix, true);
+
+	}
 
 	private void startFillBackgroundDialog()
 	{
@@ -318,8 +336,8 @@ public class MainActivity extends AppCompatActivity
         i--;
         if (i<0 )
         {i=intDrawables.length-1;
-            mDrawingView.SetCustomBitmap1(BitmapFactory.decodeResource(getResources(),intDrawables[i]));}
-        else {mDrawingView.SetCustomBitmap1(BitmapFactory.decodeResource(getResources(),intDrawables[i]));}
+			mDrawingView.setCustomBitmap2(intDrawables[i]);}//mDrawingView.SetCustomBitmap1(BitmapFactory.decodeResource(getResources(),intDrawables[i]));}
+        else mDrawingView.setCustomBitmap2(intDrawables[i]);//{mDrawingView.SetCustomBitmap1(BitmapFactory.decodeResource(getResources(),intDrawables[i]));}
     }
 
     @OnClick(R.id.next_pic)
@@ -327,9 +345,9 @@ public class MainActivity extends AppCompatActivity
         mDrawingView.clearCanvas();
         i++;
         if (i<intDrawables.length )
-        {mDrawingView.SetCustomBitmap1(BitmapFactory.decodeResource(getResources(),intDrawables[i]));}
+        {mDrawingView.setCustomBitmap2(intDrawables[i]);}//mDrawingView.SetCustomBitmap1(BitmapFactory.decodeResource(getResources(),intDrawables[i]));}
         else {i=0;
-            mDrawingView.SetCustomBitmap1(BitmapFactory.decodeResource(getResources(),intDrawables[i]));}
+			mDrawingView.setCustomBitmap2(intDrawables[i]);}//mDrawingView.SetCustomBitmap1(BitmapFactory.decodeResource(getResources(),intDrawables[i]));}
     }
 
 
