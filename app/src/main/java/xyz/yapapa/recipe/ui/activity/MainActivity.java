@@ -106,14 +106,16 @@ public class MainActivity extends AppCompatActivity
 			}
 		});
 
+		Bundle bundle = getIntent().getExtras();
+		i = bundle.getInt("image");
+
         loadDrawables();
 		ButterKnife.bind(this);
 		//initBackground();
 		initDrawingView();
 
-		mDrawingView.setCustomBitmap1(BitmapFactory.decodeResource(getResources(),intDrawables[0]));
-		Log.d("my", "SetCustomx0: " + BitmapFactory.decodeResource(getResources(),intDrawables[0]).getWidth());
-		Log.d("my", "SetCustomy0: "+ BitmapFactory.decodeResource(getResources(),intDrawables[0]).getHeight());
+		mDrawingView.setCustomBitmap1(BitmapFactory.decodeResource(getResources(),intDrawables[i]));
+
 
 
 	}
@@ -355,10 +357,10 @@ public class MainActivity extends AppCompatActivity
     private void loadDrawables() {
 
 
-		int screenSize = getResources().getConfiguration().screenLayout &
-				Configuration.SCREENLAYOUT_SIZE_MASK;
-		if (screenSize==Configuration.SCREENLAYOUT_SIZE_XLARGE)
-		{
+//		int screenSize = getResources().getConfiguration().screenLayout &
+//				Configuration.SCREENLAYOUT_SIZE_MASK;
+//		if (screenSize==Configuration.SCREENLAYOUT_SIZE_XLARGE)
+//		{
 			intDrawables = new int[]{
 					R.drawable.c001,
 					R.drawable.c002,
@@ -414,7 +416,7 @@ public class MainActivity extends AppCompatActivity
 					R.drawable.d35,
 			};
 		}
-		else {
+/*		else {
 			intDrawables = new int[]{
 					R.drawable.c001,
 					R.drawable.c002,
@@ -455,7 +457,7 @@ public class MainActivity extends AppCompatActivity
 			};
 		}
     }
-
+*/
 	/** Called when leaving the activity */
 	@Override
 	public void onPause() {

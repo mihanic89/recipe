@@ -25,8 +25,8 @@ public class DrawingView extends View
 	private Paint mDrawPaint;
 	private Canvas mDrawCanvas;
 	private Bitmap mCanvasBitmap;
-	private Bitmap mCanvasBitmapBackground=null;
-	private Bitmap mCanvasBitmapBackground2=null;
+	private static Bitmap mCanvasBitmapBackground=null;
+	private static Bitmap mCanvasBitmapBackground2=null;
 	private int mBackgroudDrawable;
 
 	private ArrayList<Path> mPaths = new ArrayList<>();
