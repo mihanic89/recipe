@@ -11,6 +11,7 @@ import android.view.animation.TranslateAnimation;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.util.ArrayList;
@@ -25,6 +26,9 @@ public class MainActivityRecycler extends AppCompatActivity {
 
 
     private StaggeredGridLayoutManager gaggeredGridLayoutManager;
+
+    private AdView mAdView;
+    private FirebaseAnalytics mFirebaseAnalytics;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +46,16 @@ public class MainActivityRecycler extends AppCompatActivity {
         RecyclerViewAdapter rcAdapter = new RecyclerViewAdapter(MainActivityRecycler.this, gaggeredList);
         recyclerView.setAdapter(rcAdapter);
 
+
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+        MobileAds.initialize(getApplicationContext(), "ca-app-pub-2888343178529026~2653479392");
+
+
+        mAdView = (AdView) findViewById(R.id.adViewMain);
+        AdRequest adRequest = new AdRequest.Builder()
+                .addTestDevice("09D7B5315C60A80D280B8CDF618FD3DE")
+                .build();
+        mAdView.loadAd(adRequest);
 
 
 
@@ -108,7 +122,31 @@ public class MainActivityRecycler extends AppCompatActivity {
        return mDataset;
     }
 
+    @Override
+    public void onPause() {
+        if (mAdView != null) {
+            mAdView.pause();
+        }
+        super.onPause();
+    }
 
+    /** Called when returning to the activity */
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (mAdView != null) {
+            mAdView.resume();
+        }
+    }
+
+    /** Called before the activity is destroyed */
+    @Override
+    public void onDestroy() {
+        if (mAdView != null) {
+            mAdView.destroy();
+        }
+        super.onDestroy();
+    }
 
 
 }
